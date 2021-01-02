@@ -26,12 +26,14 @@ module Cardistry
 
     private
 
-    def self.register_suit suit
-      @@suits << suit unless @@suits.include? suit
-    end
+    class << self
+      def register_suit suit
+        @@suits << suit unless @@suits.include? suit
+      end
 
-    def self.register_kind kind
-      @@kinds << kind unless @@kinds.include? kind
+      def register_kind kind
+        @@kinds << kind unless @@kinds.include? kind
+      end
     end
   end
 end
