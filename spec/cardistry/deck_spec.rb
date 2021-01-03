@@ -3,15 +3,18 @@ require 'cardistry/deck'
 module Cardistry
   RSpec.describe Deck do
     before do
-      @deck = new Deck
+      @deck = Deck.new
     end
 
-    # it "is empty when initialized"
+    it "is empty when initialized" do
+      expect( @deck.cards.size ).to eq 0
+    end
+
     # it "can load cards from a file"
 
     context "with cards loaded" do
       before do
-        @deck = new Deck
+        @deck = Deck.new
       end
 
       # it "can be cut into an arbitrary number of groups"
