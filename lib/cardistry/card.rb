@@ -1,14 +1,14 @@
 module Cardistry
   class Card
-    attr_reader :kind, :suit, :number, :name
+    attr_reader :kind, :suit, :rank, :name
 
     @@suits = []
     @@kinds = []
 
-    def initialize kind, suit, number, name = nil
+    def initialize kind, suit, rank, name = nil
       @kind = kind
       @suit = suit
-      @number = number
+      @rank = rank
       @name = name || default_name
 
       Card.register_suit @suit
@@ -30,8 +30,8 @@ module Cardistry
     private
 
     def default_name
-      number = @number > 1 ? @number : 'Ace'
-      "#{number} of #{@suit.capitalize}"
+      rank = @rank > 1 ? @rank : 'Ace'
+      "#{rank} of #{@suit.capitalize}"
     end
 
     class << self

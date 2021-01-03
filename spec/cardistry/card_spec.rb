@@ -9,15 +9,15 @@ module Cardistry
     it "can be created" do
       kind = :court
       suit = :hearts
-      number = 12
+      rank = 12
       name = "Queen of Hearts"
 
-      card = Card.new kind, suit, number, name
+      card = Card.new kind, suit, rank, name
 
       expect(card.name).to eq(name)
       expect(card.suit).to eq(suit)
       expect(card.kind).to eq(kind)
-      expect(card.number).to eq(number)
+      expect(card.rank).to eq(rank)
     end
 
     it "has a string representation" do
@@ -28,12 +28,12 @@ module Cardistry
       before do
         kind = :pip
         suit = :diamonds
-        number = 4
+        rank = 4
 
-        @card = Card.new kind, suit, number
+        @card = Card.new kind, suit, rank
       end
 
-      it "defaults name to `number of suit`" do
+      it "defaults name to `rank of suit`" do
         expect( @card.name ).to eq "4 of Diamonds"
       end
     end
