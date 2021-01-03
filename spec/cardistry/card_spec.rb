@@ -2,7 +2,11 @@ require 'cardistry/card'
 
 module Cardistry
   RSpec.describe Card do
-    it "can be created with a kind, a suit, a number, and a name" do
+    before do
+      @card = Card.new(:court, :hearts, 12, "Queen of Hearts")
+    end
+
+    it "can be created" do
       kind = :court
       suit = :hearts
       number = 12
@@ -14,6 +18,10 @@ module Cardistry
       expect(card.suit).to eq(suit)
       expect(card.kind).to eq(kind)
       expect(card.number).to eq(number)
+    end
+
+    it "has a string representation" do
+      expect( @card.to_s ).to eq "Queen of Hearts"
     end
 
     context "no name given" do
