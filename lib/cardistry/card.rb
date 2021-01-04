@@ -5,14 +5,14 @@ module Cardistry
     @@suits = []
     @@kinds = []
 
-    def initialize kind, suit, rank, name = nil
-      @kind = kind
-      @suit = suit
+    def initialize rank, suit = nil, kind = :pip, name = nil
       @rank = rank
+      @suit = suit
+      @kind = kind
       @name = name || default_name
 
-      Card.register_suit @suit
-      Card.register_kind @kind
+      Card.register_suit @suit if @suit
+      Card.register_kind @kind if @kind
     end
 
     def self.suits
@@ -31,16 +31,16 @@ module Cardistry
 
     def default_name
       rank = @rank > 1 ? @rank : 'Ace'
-      "#{rank} of #{@suit.capitalize}"
+      @suit ? "#{rank} of #{@suit.capitalize}" : rank
     end
 
     class << self
       def register_suit suit
-        @@suits << suit unless @@suits.include? suit
+        @@suits << suit unless @@suits.include?(suit) or !suit
       end
 
       def register_kind kind
-        @@kinds << kind unless @@kinds.include? kind
+        @@kinds << kind unless @@kinds.include?(kind) or !kind
       end
     end
   end

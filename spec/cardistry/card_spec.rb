@@ -3,7 +3,7 @@ require 'cardistry/card'
 module Cardistry
   RSpec.describe Card do
     before do
-      @card = Card.new(:court, :hearts, 12, "Queen of Hearts")
+      @card = Card.new(12, :hearts, :court, "Queen of Hearts")
     end
 
     it "can be created" do
@@ -12,7 +12,7 @@ module Cardistry
       rank = 12
       name = "Queen of Hearts"
 
-      card = Card.new kind, suit, rank, name
+      card = Card.new rank, suit, kind, name
 
       expect(card.name).to eq(name)
       expect(card.suit).to eq(suit)
@@ -24,13 +24,12 @@ module Cardistry
       expect( @card.to_s ).to eq "Queen of Hearts"
     end
 
-    context "no name given" do
+    context "minimum info given" do
       before do
-        kind = :pip
         suit = :diamonds
         rank = 4
 
-        @card = Card.new kind, suit, rank
+        @card = Card.new rank, suit
       end
 
       it "defaults name to `rank of suit`" do
@@ -41,32 +40,38 @@ module Cardistry
     context "a few cards exist" do
       before do
         @cards = [
-          Card.new(:court, :hearts, 12, "Queen of Hearts"),
-          Card.new(:trump, :major_arcana, 1, "The Magician"),
-          Card.new(:wild, :major_arcana, 0, "Joker"),
-          Card.new(:pip, :diamonds, 4),
+          Card.new( 12, :hearts, :court, "Queen of Hearts"),
+          Card.new( 1, :major_arcana, :trump, "The Magician"),
+          Card.new( 13, :diamonds, :court, "King of Diamonds"),
+          Card.new( 4, :diamonds )
         ]
-      end
 
-      it "tracks the existing suits" do
-        suits = [
+        @suits = suits = [
           :hearts,
           :major_arcana,
           :diamonds
         ].sort
 
-        expect( Card.suits.sort ).to eq suits
-      end
-
-      it "tracks the existing kinds" do
-        kinds = [
+        @kinds = [
           :court,
           :pip,
           :trump,
-          :wild
         ].sort
+      end
 
-        expect( Card.kinds.sort ).to eq kinds
+      it "tracks the existing suits" do
+        expect( Card.suits.sort ).to eq @suits
+      end
+
+      it "does not track nil as a suit" do
+        cards = @cards + [Card.new(0, nil, :trump, "Joker")]
+
+        expect( Card.suits.size ).to eq @suits.size
+      end
+
+
+      it "tracks the existing kinds" do
+        expect( Card.kinds.sort ).to eq @kinds
       end
 
     end
