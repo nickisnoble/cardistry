@@ -1,17 +1,5 @@
 [
   {
-    "name": "Joker",
-    "kind": "wild",
-    "suit": null,
-    "rank": 1
-  },
-  {
-    "name": "Joker",
-    "kind": "wild",
-    "suit": null,
-    "rank": 2
-  },
-  {
     "name": "Ace of Spades",
     "kind": "pip",
     "suit": "spades",
