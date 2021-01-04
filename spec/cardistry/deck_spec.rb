@@ -7,14 +7,30 @@ module Cardistry
     end
 
     it "is empty when initialized" do
-      expect( @deck.cards.size ).to eq 0
+      expect( @deck.size ).to eq 0
     end
 
-    # it "can load cards from a file"
+    it "can load cards from a file" do
+      path = File.join( File.dirname(__FILE__) , '../test_deck.json' )
+
+      @deck.load path
+      expect( @deck.size ).to be 54 # two jokers
+    end
+
+    it "is enumerable" do
+      expect( @deck.is_a? Enumerable ).to be true
+    end
 
     context "with cards loaded" do
       before do
         @deck = Deck.new
+        path = File.join( File.dirname(__FILE__) , '../test_deck.json' )
+
+        @deck.load path
+      end
+
+      it "can show info" do
+        expect( @deck.info ).to include("54")
       end
 
       # it "can be cut into an arbitrary number of groups"
