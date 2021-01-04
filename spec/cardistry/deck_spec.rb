@@ -14,7 +14,7 @@ module Cardistry
       path = File.join( File.dirname(__FILE__) , '../test_deck.json' )
 
       @deck.load path
-      expect( @deck.size ).to be 54 # two jokers
+      expect( @deck.size ).to be 52
     end
 
     it "is enumerable" do
@@ -30,8 +30,27 @@ module Cardistry
       end
 
       it "can show info" do
-        expect( @deck.info ).to include("54")
+        expect( @deck.info ).to include("52")
       end
+
+      it "tracks the existing suits" do
+        expect( @deck.suits.sort ).to eq [
+          :spades,
+          :hearts,
+          :clubs,
+          :diamonds
+        ].sort
+      end
+
+      it "lets you access cards with []" do
+        expect( @deck[0].to_s ).to eq "Ace of Spades"
+      end
+
+      # it "does not track nil as a suit" do
+      #   cards = @deck + Card.new(0, nil)
+
+      #   expect( @deck.suits.size ).to eq 4
+      # end
 
       # it "can be cut into an arbitrary number of groups"
       # it "can be cut and joined smoothly"

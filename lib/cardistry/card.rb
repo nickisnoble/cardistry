@@ -10,9 +10,6 @@ module Cardistry
       @suit = suit
       @kind = kind
       @name = name || default_name
-
-      Card.register_suit @suit if @suit
-      Card.register_kind @kind if @kind
     end
 
     def self.suits
@@ -34,14 +31,5 @@ module Cardistry
       @suit ? "#{rank} of #{@suit.capitalize}" : rank
     end
 
-    class << self
-      def register_suit suit
-        @@suits << suit unless @@suits.include?(suit) or !suit
-      end
-
-      def register_kind kind
-        @@kinds << kind unless @@kinds.include?(kind) or !kind
-      end
-    end
   end
 end

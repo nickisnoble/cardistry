@@ -36,44 +36,5 @@ module Cardistry
         expect( @card.name ).to eq "4 of Diamonds"
       end
     end
-
-    context "a few cards exist" do
-      before do
-        @cards = [
-          Card.new( 12, :hearts, :court, "Queen of Hearts"),
-          Card.new( 1, :major_arcana, :trump, "The Magician"),
-          Card.new( 13, :diamonds, :court, "King of Diamonds"),
-          Card.new( 4, :diamonds )
-        ]
-
-        @suits = suits = [
-          :hearts,
-          :major_arcana,
-          :diamonds
-        ].sort
-
-        @kinds = [
-          :court,
-          :pip,
-          :trump,
-        ].sort
-      end
-
-      it "tracks the existing suits" do
-        expect( Card.suits.sort ).to eq @suits
-      end
-
-      it "does not track nil as a suit" do
-        cards = @cards + [Card.new(0, nil, :trump, "Joker")]
-
-        expect( Card.suits.size ).to eq @suits.size
-      end
-
-
-      it "tracks the existing kinds" do
-        expect( Card.kinds.sort ).to eq @kinds
-      end
-
-    end
   end
 end
