@@ -50,9 +50,9 @@ puts deck[0].suit # :spades
 
 ```
 
-### Extending
+### Extending Classes
 
-```
+```ruby
 require 'cardistry'
 
 class CoolerCard < Cardistry::Card
