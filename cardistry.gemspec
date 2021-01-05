@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["nick.noble@hey.com"]
 
   spec.summary       = %q{A toolkit for modeling cards, decks, hands, and spreads.}
-  spec.homepage      = "https://rubygems.org/gems/cardistry"
+  spec.homepage      = "https://github.com/nickisnoble/cardistry"
+  spec.source_code_uri = "https://github.com/nickisnoble/cardistry"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
