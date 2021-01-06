@@ -46,11 +46,11 @@ module Cardistry
         expect( @deck[0].to_s ).to eq "Ace of Spades"
       end
 
-      # it "does not track nil as a suit" do
-      #   cards = @deck + Card.new(0, nil)
+      it "does not track nil as a suit" do
+        cards = @deck << Card.new(0, nil)
 
-      #   expect( @deck.suits.size ).to eq 4
-      # end
+        expect( @deck.suits.size ).to eq 4
+      end
 
       # it "can be cut into an arbitrary number of groups"
       # it "can be cut and joined smoothly"

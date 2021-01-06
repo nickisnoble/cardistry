@@ -35,6 +35,10 @@ module Cardistry
       @cards[index] || "Not found"
     end
 
+    def << card
+      @cards << card
+    end
+
     def size
       @cards.size
     end
